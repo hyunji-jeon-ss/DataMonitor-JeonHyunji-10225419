@@ -6,7 +6,7 @@
 ## 기술 스택 / 컨벤션
 - C++20, Visual Studio(MSBuild, .vcxproj), gmock(NuGet)
 - nlohmann/json (NuGet 패키지 `nlohmann.json`) — JSON 파일 읽기
-- 코드 컨벤션은 상위 `Semiconductor` 폴더의 `CODE_CONVENTION.md`를 따른다.
+- 코드 컨벤션은 `CODE_CONVENTION.md`를 따른다.
 
 ## 구조
 ```
