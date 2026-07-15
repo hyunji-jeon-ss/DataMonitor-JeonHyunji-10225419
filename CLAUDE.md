@@ -5,12 +5,20 @@
 
 ## 기술 스택 / 컨벤션
 - C++20, Visual Studio(MSBuild, .vcxproj), gmock(NuGet)
+- nlohmann/json (NuGet 패키지 `nlohmann.json`) — JSON 파일 읽기
 - 코드 컨벤션은 상위 `Semiconductor` 폴더의 `CODE_CONVENTION.md`를 따른다.
+
+## 구조
+```
+DataMonitorLib/       # 정적 라이브러리: model/, repository/(IItemReader, JsonItemReader)
+DataMonitorApp/       # 콘솔 뷰어 (main.cpp), Lib 참조
+DataMonitorTest/      # gmock 단위 테스트, Lib 참조
+```
 
 ## 설계 방향
 - 조회 전용(read-only) 클라이언트로 구현, 저장소를 직접 변경하지 않는다.
-- 외부에서 데이터가 변경된 뒤 재조회 시 최신 상태가 반영되는지를 핵심으로 검증한다.
-- **검색 기능**: 이름/ID 등 속성 기준으로 조건에 맞는 데이터만 필터링하여 조회할 수 있어야 한다.
+- 외부에서 데이터가 변경된 뒤 재조회 시 최신 상태가 반영되는지를 핵심으로 검증한다 (매 호출마다 파일을 새로 읽고 캐싱하지 않음).
+- **검색 기능**: 이름/ID 등 속성 기준으로 조건에 맞는 데이터만 필터링하여 조회할 수 있어야 한다 (대소문자 무시 부분일치).
 
 ## 테스트
 - 저장소 인터페이스를 gmock으로 목킹하여 조회 로직을 단위 테스트한다.
