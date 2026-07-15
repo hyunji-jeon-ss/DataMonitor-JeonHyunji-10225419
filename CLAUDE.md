@@ -16,5 +16,10 @@
 - 저장소 인터페이스를 gmock으로 목킹하여 조회 로직을 단위 테스트한다.
 - 검색 조건 매칭/불일치, 빈 결과 등 검색 로직의 경계 케이스를 단위 테스트로 검증한다.
 
+## 한글 인코딩 (중요)
+콘솔에 한글을 출력하므로 반드시 아래 두 가지를 유지한다. 자세한 이유는 상위 `Semiconductor` 폴더의 `CLAUDE.md` 참고.
+1. 모든 `.vcxproj`의 각 ClCompile 설정에 `<AdditionalOptions>/utf-8 %(AdditionalOptions)</AdditionalOptions>` 적용
+2. 콘솔 진입점(main)에서 `SetConsoleOutputCP(CP_UTF8)` / `SetConsoleCP(CP_UTF8)` 호출
+
 ## 빌드/실행
 Visual Studio에서 솔루션을 열어 빌드/실행한다.
